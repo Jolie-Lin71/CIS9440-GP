@@ -28,29 +28,8 @@ date_yqmw_name as(
         WHEN `quarter` = 3 THEN 'Q3'
         WHEN `quarter` = 4 THEN 'Q4'
     END AS quarter_name,
-    CASE
-        WHEN `month` = 1 THEN 'January'
-        WHEN `month` = 2 THEN 'February'
-        WHEN `month` = 3 THEN 'March'
-        WHEN `month` = 4 THEN 'April'
-        WHEN `month` = 5 THEN 'May'
-        WHEN `month` = 6 THEN 'June'
-        WHEN `month` = 7 THEN 'July'
-        WHEN `month` = 8 THEN 'August'
-        WHEN `month` = 9 THEN 'September'
-        WHEN `month` = 10 THEN 'October'
-        WHEN `month` = 11 THEN 'November'
-        WHEN `month` = 12 THEN 'December'
-    END AS month_name,
-    CASE
-        WHEN day_of_week = 1 THEN 'Sunday'
-        WHEN day_of_week = 2 THEN 'Monday'
-        WHEN day_of_week = 3 THEN 'Tuesday'
-        WHEN day_of_week = 4 THEN 'Wednesday'
-        WHEN day_of_week = 5 THEN 'Thursday'
-        WHEN day_of_week = 6 THEN 'Friday'
-        WHEN day_of_week = 7 THEN 'Saturday'
-    END AS day_of_week_name,
+    FORMAT_DATE('%B',`date`) AS month_name,
+    FORMAT_DATE('%A',`date`) AS day_of_week_name,
     CASE
         WHEN `date` < '2020-03-13' THEN 'before-COVID'
         WHEN `date` BETWEEN '2020-03-13' AND '2023-05-11' THEN 'COVID'
