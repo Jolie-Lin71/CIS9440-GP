@@ -1,3 +1,9 @@
+{{
+  config(
+    materialized='table'
+  )
+}}
+
 with basedates as(
     {{ dbt_date.get_base_dates(start_date="2019-01-01", end_date="2024-09-30", datepart="day") }}
 ),
