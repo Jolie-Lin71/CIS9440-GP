@@ -51,9 +51,14 @@ date_yqmw_name as(
         WHEN `date` > '2023-05-11' THEN 'post-COVID'
     END AS covid_status
     FROM date_yqmw
-)
+),
+date_halfway as(
 SELECT `date`,`year`,`quarter`,`month`,`day`,day_of_week,
         quarter_name,month_name,day_of_week_name,covid_status
 FROM date_yqmw_name
 INNER JOIN date_yqmw
 USING (`date`)
+)
+SELECT FORMAT_DATE('%Y%m%d',`date`) AS date_dim_id,
+       *
+FROM date_halfway
