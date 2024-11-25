@@ -22,7 +22,7 @@ SELECT DISTINCT(status)AS resolution_status
 FROM `cis9440gp.RawDataset.FoodEstablishment`
 ),
 crossjoin AS(
-SELECT detailed_category, resolution_status
+SELECT DISTINCT(detailed_category), resolution_status
 FROM location_change
 CROSS JOIN status_check
 )
