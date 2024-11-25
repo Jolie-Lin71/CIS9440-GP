@@ -20,7 +20,12 @@ location_change AS(
 status_check AS(
 SELECT DISTINCT(status)AS resolution_status
 FROM `cis9440gp.RawDataset.FoodEstablishment`
-)
+),
+crossjoin AS(
 SELECT detailed_category, resolution_status
 FROM location_change
 CROSS JOIN status_check
+)
+SELECT ROW_NUMBER() OVER() AS junk_dim_id,
+        *
+FROM crossjoin
